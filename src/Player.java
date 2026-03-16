@@ -1,11 +1,11 @@
 public class Player {
     private String name;
-    private int skillLevel;
+    private int skill;
     private int price;
 
-    public Player(String name, int skillLevel, int price) {
+    public Player(String name, int skill, int price) {
         this.name = name;
-        this.skillLevel = skillLevel;
+        this.skill = skill;
         this.price = price;
     }
 
@@ -17,12 +17,12 @@ public class Player {
         this.name = name;
     }
 
-    public int getSkillLevel() {
-        return skillLevel;
+    public int getSkill() {
+        return skill;
     }
 
-    public void setSkillLevel(int skillLevel) {
-        this.skillLevel = skillLevel;
+    public void setSkill(int skill) {
+        this.skill = skill;
     }
 
     public int getPrice() {

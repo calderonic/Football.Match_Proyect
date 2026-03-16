@@ -1,20 +1,36 @@
 public class Match {
-    private Team homeTeam;
-    private Team awayTeam;
+    private Team teamA;
+    private Team teamB;
 
-    public Match(Team homeTeam, Team awayTeam) {
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
+    public Match(Team teamA, Team teamB) {
+        this.teamA = teamA;
+        this.teamB = teamB;
+    }
+
+    public Team getTeamA() {
+        return teamA;
+    }
+
+    public void setTeamA(Team teamA) {
+        this.teamA = teamA;
+    }
+
+    public Team getTeamB() {
+        return teamB;
+    }
+
+    public void setTeamB(Team teamB) {
+        this.teamB = teamB;
     }
 
     public void playMatch() {
 
-        if (homeTeam.getTeamPower() > awayTeam.getTeamPower()) {
-            System.out.println(homeTeam.getName() + " wins!");
-        } else if (homeTeam.getTeamPower() < awayTeam.getTeamPower()) {
-            System.out.println(awayTeam.getName() + " wins!");
+        if (teamA.getPower() > teamB.getPower()) {
+            System.out.println(teamA.getName() + " wins");
+        } else if (teamA.getPower() < teamB.getPower()) {
+            System.out.println(teamB.getName() + " wins");
         } else {
-            System.out.println("Draw!");
+            System.out.println("Draw");
         }
     }
 }

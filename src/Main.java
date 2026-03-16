@@ -4,18 +4,41 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Player player1 = new Player("Messi", 95, 100);
-        Player player2 = new Player("Ronaldo", 93, 90);
+        System.out.println("Football match simulation");
 
-        Team teamA = new Team("Barcelona", 90);
-        Team teamB = new Team("Madrid", 88);
+        Season season = new Season(2026);
+        System.out.println("Season year: " + season.getYear());
 
-        Manager manager = new Manager("Pep Guardiola", 10);
+        League league = new League("Champions League");
+        System.out.println("League: " + league.getName());
 
-        TransferMarket market = new TransferMarket(200);
-        market.buyPlayer(player1);
+        Team barcelona = new Team("Barcelona", 70);
+        Team madrid = new Team("Real Madrid", 75);
 
-        Match match = new Match(teamA, teamB);
+        Manager manager = new Manager("Alexis", 10);
+        System.out.println("Manager name: " + manager.getName());
+
+        Player messi = new Player("Messi", 95, 100);
+        Player ronaldo = new Player("Ronaldo", 93, 90);
+
+        TransferMarket transferMarket = new TransferMarket(200);
+
+        System.out.println("Buying players");
+        transferMarket.buyPlayer(barcelona, messi);
+        transferMarket.buyPlayer(madrid, ronaldo);
+
+        Stadium stadium = new Stadium("Camp Nou", 90000);
+        System.out.println("Stadium: " + stadium.getName());
+
+        ScoreBoard scoreBoard = new ScoreBoard(0, 0);
+        System.out.println("Score: " + scoreBoard.getHomeGoals() + "-" + scoreBoard.getAwayGoals());
+
+        Match match = new Match(barcelona, madrid);
         match.playMatch();
+
+        Statistics statistics = new Statistics(0);
+        statistics.setMatchesPlayed(1);
+
+        System.out.println("Matches played: " + statistics.getMatchesPlayed());
     }
 }

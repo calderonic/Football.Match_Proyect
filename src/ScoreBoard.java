@@ -7,4 +7,20 @@ public class ScoreBoard {
         this.homeGoals = homeGoals;
         this.awayGoals = awayGoals;
     }
+
+    public int getHomeGoals() {
+        return homeGoals;
+    }
+
+    public int getAwayGoals() {
+        return awayGoals;
+    }
+
+    public void setHomeGoals(int homeGoals) {
+        this.homeGoals = homeGoals;
+    }
+
+    public void setAwayGoals(int awayGoals) {
+        this.awayGoals = awayGoals;
+    }
 }

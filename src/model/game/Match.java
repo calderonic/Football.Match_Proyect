@@ -1,4 +1,8 @@
-public class Match {
+package model.game;
+
+import model.entity.Team;
+
+public class Match extends Game{
     private Team teamA;
     private Team teamB;
 
@@ -23,8 +27,8 @@ public class Match {
         this.teamB = teamB;
     }
 
-    public void playMatch() {
-
+    @Override
+    public void play() {
         if (teamA.getPower() > teamB.getPower()) {
             System.out.println(teamA.getName() + " wins");
         } else if (teamA.getPower() < teamB.getPower()) {

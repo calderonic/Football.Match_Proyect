@@ -1,7 +1,10 @@
-public class Statistics {
+package model.record;
+
+public class Statistics extends Record{
     private int matchesPlayed;
 
-    public Statistics(int matchesPlayed) {
+    public Statistics(int id, int matchesPlayed) {
+        super(id);
         this.matchesPlayed = matchesPlayed;
     }
 

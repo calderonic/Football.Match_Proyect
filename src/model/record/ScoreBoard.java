@@ -1,9 +1,11 @@
-public class ScoreBoard {
+package model.record;
 
+public class ScoreBoard extends Record{
     private int homeGoals;
     private int awayGoals;
 
-    public ScoreBoard(int homeGoals, int awayGoals) {
+    public ScoreBoard(int id, int homeGoals, int awayGoals) {
+        super(id);
         this.homeGoals = homeGoals;
         this.awayGoals = awayGoals;
     }

@@ -1,7 +1,9 @@
-public class League {
-    private String name;
+package model.competition;
 
-    public League(String name) {
+public abstract class Competition {
+    protected String name;
+
+    public Competition(String name) {
         this.name = name;
     }
 

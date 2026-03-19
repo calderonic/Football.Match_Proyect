@@ -1,44 +1,32 @@
+import model.game.Match;
+import model.person.Manager;
+import model.person.Person;
+import model.person.Player;
+import model.competition.League;
+import model.competition.Season;
+import model.entity.Stadium;
+import model.entity.Team;
+import model.record.ScoreBoard;
+import model.record.Statistics;
+import model.service.TransferMarket;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Football match simulation");
+        System.out.println("Football match");
 
-        Season season = new Season(2026);
-        System.out.println("Season year: " + season.getYear());
-
+        Season season = new Season("Season 1",2026);
         League league = new League("Champions League");
-        System.out.println("League: " + league.getName());
 
-        Team barcelona = new Team("Barcelona", 70);
-        Team madrid = new Team("Real Madrid", 75);
+        System.out.println("Season: " + season.getYear());
 
-        Manager manager = new Manager("Alexis", 10);
-        System.out.println("Manager name: " + manager.getName());
+        Person p1 = new Player("TestPlayer", 80, 50);
+        Person p2 = new Manager("TestManager", 5);
 
-        Player messi = new Player("Messi", 95, 100);
-        Player ronaldo = new Player("Ronaldo", 93, 90);
-
-        TransferMarket transferMarket = new TransferMarket(200);
-
-        System.out.println("Buying players");
-        transferMarket.buyPlayer(barcelona, messi);
-        transferMarket.buyPlayer(madrid, ronaldo);
-
-        Stadium stadium = new Stadium("Camp Nou", 90000);
-        System.out.println("Stadium: " + stadium.getName());
-
-        ScoreBoard scoreBoard = new ScoreBoard(0, 0);
-        System.out.println("Score: " + scoreBoard.getHomeGoals() + "-" + scoreBoard.getAwayGoals());
-
-        Match match = new Match(barcelona, madrid);
-        match.playMatch();
-
-        Statistics statistics = new Statistics(0);
-        statistics.setMatchesPlayed(1);
-
-        System.out.println("Matches played: " + statistics.getMatchesPlayed());
+        System.out.println(p1);
+        System.out.println(p2);
     }
 }

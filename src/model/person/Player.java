@@ -1,8 +1,11 @@
 package model.person;
 
+import interfaces.IBuyable;
+import interfaces.ITrainable;
+
 import java.util.Objects;
 
-public class Player extends Person {
+public class Player extends Person implements ITrainable, IBuyable {
     private int skill;
     private int price;
 
@@ -29,6 +32,12 @@ public class Player extends Person {
     }
 
     @Override
+    public void train() {
+        skill += 5;
+        System.out.println(getName() + " trained. New skill: " + skill);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -48,5 +57,10 @@ public class Player extends Person {
     @Override
     public int hashCode() {
         return Objects.hash(skill, price);
+    }
+
+    @Override
+    public boolean canBeBought(int budget) {
+        return budget >= price;
     }
 }

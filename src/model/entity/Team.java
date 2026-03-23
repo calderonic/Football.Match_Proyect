@@ -1,18 +1,23 @@
 package model.entity;
 
+import interfaces.IPrintable;
 import model.person.Player;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Team extends Entity {
+public class Team extends Entity implements IPrintable {
     private int power;
     private ArrayList<Player> players;
 
-    public Team(String name, int power, ArrayList<Player> players) {
+    public Team(String name, int power) {
         super(name);
         this.power = power;
-        this.players = players;
+        this.players = new ArrayList<>();
+    }
+
+    public void increasePower(int value) {
+        power += value;
     }
 
     public void addPlayer(Player player) {
@@ -31,22 +36,26 @@ public class Team extends Entity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Team)) return false;
         Team team = (Team) o;
-        return power == team.power && Objects.equals(players, team.players);
+        return getName().equals(team.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(power, players);
+        return Objects.hash(getName());
     }
 
     @Override
     public String toString() {
         return "Team{" +
-                "power=" + power +
-                ", players=" + players +
-                ", name='" + name + '\'' +
+                "name='" + getName() + '\'' +
+                ", power=" + power +
                 '}';
+    }
+
+    @Override
+    public String printInfo() {
+        return toString();
     }
 }

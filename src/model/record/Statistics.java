@@ -15,4 +15,9 @@ public class Statistics extends Record{
     public void setMatchesPlayed(int matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
     }
+
+    @Override
+    public String toString() {
+        return "Statistics{id=" + id + ", matchesPlayed=" + matchesPlayed + "}";
+    }
 }

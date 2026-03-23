@@ -1,13 +1,22 @@
 package model.person;
 
+import interfaces.IManageable;
+import model.entity.Team;
+
 import java.util.Objects;
 
-public class Manager extends Person{
+public class Manager extends Person implements IManageable {
     private int experience;
 
     public Manager(String name, int experience) {
         super(name);
         this.experience = experience;
+    }
+
+    @Override
+    public void manage(Team team) {
+        team.increasePower(experience);
+        System.out.println(name + " improved team power");
     }
 
     public int getExperience() {

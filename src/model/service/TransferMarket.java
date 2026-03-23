@@ -10,12 +10,13 @@ public class TransferMarket {
     }
 
     public void buyPlayer(Team team, Player player) {
+
         if (budget >= player.getPrice()) {
-            team.addPlayer(player);
+            team.addPlayer((Player) player);
             budget -= player.getPrice();
-            System.out.println("Player " + player.getName() + " bought for " + team.getName());
+            System.out.println("Player bought. Remaining budget: " + budget);
         } else {
-            System.out.println("Not enough money");
+            System.out.println("Not enough budget");
         }
     }
 }

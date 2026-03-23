@@ -6,7 +6,6 @@ import model.competition.League;
 import model.competition.Season;
 import model.entity.Stadium;
 import model.entity.Team;
-import model.record.ScoreBoard;
 import model.record.Statistics;
 import model.service.TransferMarket;
 
@@ -15,18 +14,48 @@ import model.service.TransferMarket;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Football match simulation");
 
-        System.out.println("Football match");
-
-        Season season = new Season("Season 1",2026);
+        Season season = new Season("Season 2026", 2026);
         League league = new League("Champions League");
 
-        System.out.println("Season: " + season.getYear());
+        System.out.println(season);
+        System.out.println("League: " + league.getName());
 
-        Person p1 = new Player("TestPlayer", 80, 50);
-        Person p2 = new Manager("TestManager", 5);
+        Team barcelona = new Team("Barcelona", 70);
+        Team madrid = new Team("Real Madrid", 75);
 
-        System.out.println(p1);
-        System.out.println(p2);
+        Manager manager = new Manager("Alexis", 10);
+        System.out.println(manager);
+
+        Player messi = new Player("Messi", 95, 100);
+        Player ronaldo = new Player("Ronaldo", 93, 90);
+
+        System.out.println(messi);
+        System.out.println(ronaldo);
+
+        messi.train();
+
+        TransferMarket market = new TransferMarket(200);
+
+        System.out.println("Buying players...");
+        market.buyPlayer(barcelona, messi);
+        market.buyPlayer(madrid, ronaldo);
+
+        manager.manage(barcelona);
+
+        Stadium stadium = new Stadium("Camp Nou", 90000);
+        System.out.println(stadium);
+
+        Match match = new Match(barcelona, madrid);
+        match.startGame();
+
+        Statistics stats = new Statistics(1, 0);
+        stats.setMatchesPlayed(1);
+        System.out.println(stats);
+
+        // Polymorphism (Person)
+        Person person = new Player("TestPlayer", 80, 50);
+        System.out.println(person);
     }
 }

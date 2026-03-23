@@ -1,30 +1,11 @@
 package model.game;
 
+import interfaces.IPlayable;
 import model.entity.Team;
 
-public class Match extends Game{
-    private Team teamA;
-    private Team teamB;
-
+public class Match extends Game implements IPlayable {
     public Match(Team teamA, Team teamB) {
-        this.teamA = teamA;
-        this.teamB = teamB;
-    }
-
-    public Team getTeamA() {
-        return teamA;
-    }
-
-    public void setTeamA(Team teamA) {
-        this.teamA = teamA;
-    }
-
-    public Team getTeamB() {
-        return teamB;
-    }
-
-    public void setTeamB(Team teamB) {
-        this.teamB = teamB;
+        super(teamA, teamB);
     }
 
     @Override

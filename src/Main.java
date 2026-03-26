@@ -8,12 +8,24 @@ import model.entity.Stadium;
 import model.entity.Team;
 import model.record.Statistics;
 import model.service.TransferMarket;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import static model.service.LoggerConfig.log;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
+    static {
+        System.setProperty("log4j.configurationFile", "./src/resources/log4j2.xml");
+    }
+
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
+
+
         System.out.println("Football match simulation");
 
         Season season = new Season("Season 2026", 2026);
@@ -57,5 +69,7 @@ public class Main {
         // Polymorphism (Person)
         Person person = new Player("TestPlayer", 80, 50);
         System.out.println(person);
+
+        LOGGER.info("Test file logger");
     }
 }

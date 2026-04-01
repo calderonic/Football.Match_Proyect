@@ -1,19 +1,24 @@
 package main.model.entity;
 
+import main.generics.Squad;
+import main.generics.StatTracker;
 import main.interfaces.IPrintable;
 import main.model.person.Player;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Set;
 
 public class Team extends Entity implements IPrintable {
     private int power;
-    private ArrayList<Player> players;
+    private Squad<Player> squad;
+    private StatTracker<Player> goals;
 
     public Team(String name, int power) {
         super(name);
         this.power = power;
-        this.players = new ArrayList<>();
+        this.squad = new Squad<>();
+        this.goals = new StatTracker<>();
     }
 
     public void increasePower(int value) {
@@ -21,16 +26,24 @@ public class Team extends Entity implements IPrintable {
     }
 
     public void addPlayer(Player player) {
-        players.add(player);
+        squad.addMember(player);
         power += player.getSkill();
+    }
+
+    public Set<Player> getPlayers() {
+        return squad.getMembers();
     }
 
     public int getPower() {
         return power;
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
+    public void scoreGoal(Player player) {
+        goals.addStat(player);
+    }
+
+    public int getGoals(Player player) {
+        return goals.getStat(player);
     }
 
     @Override

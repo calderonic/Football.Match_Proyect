@@ -1,21 +1,35 @@
 package main.model.game;
 
+import main.generics.MatchResult;
 import main.interfaces.IPlayable;
 import main.model.entity.Team;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Match extends Game implements IPlayable {
+    private static final Logger LOGGER = LogManager.getLogger(Match.class);
+
     public Match(Team teamA, Team teamB) {
         super(teamA, teamB);
     }
 
     @Override
     public void play() {
-        if (teamA.getPower() > teamB.getPower()) {
-            System.out.println(teamA.getName() + " wins");
-        } else if (teamA.getPower() < teamB.getPower()) {
-            System.out.println(teamB.getName() + " wins");
+        MatchResult<Team> result = playMatch();
+
+        if (result != null) {
+            LOGGER.info("Winner: {}", result.getWinner().getName());
         } else {
-            System.out.println("Draw");
+            LOGGER.info("Match ended in a draw");
         }
+    }
+
+    public MatchResult<Team> playMatch() {
+        if (teamA.getPower() > teamB.getPower()) {
+            return new MatchResult<>(teamA);
+        } else if (teamB.getPower() > teamA.getPower()) {
+            return new MatchResult<>(teamB);
+        }
+        return null;
     }
 }

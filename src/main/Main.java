@@ -9,7 +9,6 @@ import main.model.person.Person;
 import main.model.person.Player;
 import main.model.competition.League;
 import main.model.competition.Season;
-import main.model.entity.Stadium;
 import main.model.entity.Team;
 import main.model.record.Statistics;
 import main.service.MatchService;
@@ -18,10 +17,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
-
-    static {
-        System.setProperty("log4j.configurationFile", "./src/main/resources/log4j2.xml");
-    }
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
@@ -66,7 +61,7 @@ public class Main {
 
         manager.manage(barcelona);
 
-        barcelona.scoreGoal(messi); // uses StatTracker<T>
+        barcelona.scoreGoal(messi);
         LOGGER.info("Messi goals: {}", barcelona.getGoals(messi));
 
         Match match = new Match(barcelona, madrid);

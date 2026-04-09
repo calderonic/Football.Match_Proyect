@@ -11,6 +11,7 @@ import main.model.competition.League;
 import main.model.competition.Season;
 import main.model.entity.Team;
 import main.model.record.Statistics;
+import main.service.FileWordCounter;
 import main.service.MatchService;
 import main.service.TransferMarket;
 import org.apache.logging.log4j.LogManager;
@@ -86,5 +87,14 @@ public class Main {
 
         Person person = new Player("TestPlayer", 80, 50);
         LOGGER.info("Polymorphism: {}", person);
+
+        try {
+            FileWordCounter.processFile(
+                    "src/main/resources/input.txt",
+                    "src/main/resources/output.txt"
+            );
+        } catch (Exception e) {
+            LOGGER.error("File processing error: {}", e.getMessage());
+        }
     }
 }

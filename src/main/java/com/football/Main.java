@@ -1,6 +1,8 @@
 package com.football;
 
 import com.football.expections.PlayerAlreadyExistsException;
+import com.football.interfaces.PlayerAction;
+import com.football.interfaces.PlayerFilter;
 import com.football.model.competition.League;
 import com.football.model.competition.Season;
 import com.football.model.entity.Team;
@@ -61,8 +63,15 @@ public class Main {
         }
 
         manager.manage(barcelona);
+        barcelona.getPlayers().stream().forEach(p -> LOGGER.info("Player: {}", p.getName()));
 
-        barcelona.scoreGoal(messi);
+        PlayerFilter highSkill = p -> p.getSkill() > 90;
+        barcelona.getPlayers().stream().filter(highSkill::test).forEach(p -> LOGGER.info("Top player: {}", p.getName()));
+
+        PlayerAction trainPlayer = p -> p.train();
+
+        barcelona.getPlayers().forEach(trainPlayer::apply);
+
         LOGGER.info("Messi goals: {}", barcelona.getGoals(messi));
 
         Match match = new Match(barcelona, madrid);

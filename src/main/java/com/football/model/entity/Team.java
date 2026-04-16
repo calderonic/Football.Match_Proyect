@@ -71,4 +71,10 @@ public class Team extends Entity implements IPrintable {
     public String printInfo() {
         return toString();
     }
+
+    public int getTotalSkill() {
+        return squad.getMembers().stream()
+                .mapToInt(Player::getSkill)
+                .sum();
+    }
 }

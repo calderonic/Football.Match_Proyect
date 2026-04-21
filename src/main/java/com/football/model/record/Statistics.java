@@ -1,23 +1,10 @@
 package com.football.model.record;
 
-public class Statistics extends Record {
-    private int matchesPlayed;
+public record Statistics(int id, int matchesPlayed) {
 
-    public Statistics(int id, int matchesPlayed) {
-        super(id);
-        this.matchesPlayed = matchesPlayed;
-    }
-
-    public int getMatchesPlayed() {
-        return matchesPlayed;
-    }
-
-    public void setMatchesPlayed(int matchesPlayed) {
-        this.matchesPlayed = matchesPlayed;
-    }
-
-    @Override
-    public String toString() {
-        return "Statistics{id=" + id + ", matchesPlayed=" + matchesPlayed + "}";
+    public Statistics {
+        if (matchesPlayed < 0) {
+            throw new IllegalArgumentException("matchesPlayed cannot be negative");
+        }
     }
 }

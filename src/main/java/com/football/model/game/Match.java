@@ -1,6 +1,6 @@
 package com.football.model.game;
 
-import com.football.generics.MatchResult;
+import com.football.model.record.MatchResult;
 import com.football.interfaces.IPlayable;
 import com.football.model.entity.Team;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +18,7 @@ public class Match extends Game implements IPlayable {
         MatchResult<Team> result = playMatch();
 
         if (result != null) {
-            LOGGER.info("Winner: {}", result.getWinner().getName());
+            LOGGER.info("Winner: {}", result.winner().getName());
         } else {
             LOGGER.info("Match ended in a draw");
         }

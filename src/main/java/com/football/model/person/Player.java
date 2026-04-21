@@ -1,5 +1,6 @@
 package com.football.model.person;
 
+import com.football.annotations.Sensitive;
 import com.football.interfaces.IBuyable;
 import com.football.interfaces.ITrainable;
 
@@ -7,6 +8,7 @@ import java.util.Objects;
 
 public class Player extends Person implements ITrainable, IBuyable {
     private int skill;
+    @Sensitive
     private int price;
 
     public Player(String name, int skill, int price) {

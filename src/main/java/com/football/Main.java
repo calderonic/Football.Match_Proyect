@@ -13,14 +13,14 @@ import com.football.model.person.Player;
 import com.football.model.record.Statistics;
 import com.football.service.FileWordCounter;
 import com.football.expections.NotEnoughBudgetException;
-import com.football.generics.MatchResult;
+import com.football.model.record.MatchResult;
 import com.football.service.MatchService;
 import com.football.service.TransferMarket;
+import com.football.util.ReflectionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
-
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
@@ -70,8 +70,7 @@ public class Main {
 
         PlayerAction trainPlayer = p -> p.train();
 
-        barcelona.getPlayers().forEach(trainPlayer::apply);
-
+        barcelona.scoreGoal(messi);
         LOGGER.info("Messi goals: {}", barcelona.getGoals(messi));
 
         Match match = new Match(barcelona, madrid);
@@ -80,19 +79,20 @@ public class Main {
         MatchResult<Team> result = match.playMatch();
 
         if (result != null) {
-            LOGGER.info("Winner: {}", result.getWinner().getName());
+            LOGGER.info("Winner: {}", result.winner().getName());
         } else {
             LOGGER.info("Match ended in draw");
         }
 
+        Statistics stats = new Statistics(1, 1);
+        LOGGER.info("Statistics: {}", stats);
+
+        ReflectionUtils.inspect(messi);
+        ReflectionUtils.inspect(market);
+
         MatchService matchService = new MatchService();
         matchService.addMatch(new Match(barcelona, madrid));
         matchService.playNextMatch();
-
-        Statistics stats = new Statistics(1, 0);
-        stats.setMatchesPlayed(1);
-
-        LOGGER.info("Statistics: {}", stats);
 
         Person person = new Player("TestPlayer", 80, 50);
         LOGGER.info("Polymorphism: {}", person);

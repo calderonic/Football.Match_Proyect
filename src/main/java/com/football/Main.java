@@ -1,5 +1,6 @@
 package com.football;
 
+import com.football.currency.ConcurrencyDemo;
 import com.football.expections.PlayerAlreadyExistsException;
 import com.football.interfaces.PlayerAction;
 import com.football.interfaces.PlayerFilter;
@@ -23,7 +24,7 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         LOGGER.info("Football match simulation");
 
@@ -105,5 +106,7 @@ public class Main {
         } catch (Exception e) {
             LOGGER.error("File processing error: {}", e.getMessage());
         }
+
+        ConcurrencyDemo.run();
     }
 }
